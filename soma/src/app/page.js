@@ -1,6 +1,7 @@
 import NavigationCard from "@/components/NavigationCard";
 import Image from "next/image";
 import Card from "@/components/Card";
+import PostFormCard from "@/components/PostFormCard";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
 
       <div className="w-1/3">
         {/* 
-        Our First Task is to create the side floating thing containing
+        Our First Task is to create the sidebar containing
         - Notification
         - Friends 
         and other different stuff
@@ -18,8 +19,14 @@ export default function Home() {
       </div>
 
       <div className="grow">
-        <Card>form here</Card>
+
+        {/* This PostFormCard gets us all the component 
+        that we want, to create the post feature area */}
+        <PostFormCard />
+        
+        {/*  */}
         <Card>first post</Card>
+
       </div>
     </div>
   );
