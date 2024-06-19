@@ -1,5 +1,7 @@
 import Card from "../components/Card";
 
+// This component is basically all the things for the sidebar we see on the page
+
 export default function NavigationCard() {
     return (
         <Card>
