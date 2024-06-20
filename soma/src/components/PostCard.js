@@ -1,7 +1,9 @@
 import Avatar from "./Avatar"
 import Card from "./Card"
+import ClickOutsideHandler from './ClickOutsideHandler';
 
 export default function PostCard() {
+    
     return (
         <Card>
 
@@ -23,11 +25,13 @@ export default function PostCard() {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
                         </svg>
                     </button>
+
+                    <ClickOutsideHandler onClickOutside={() => console.log('Clicked outside')}>
+                        <div>something</div>
+                    </ClickOutsideHandler>
+
                 </div>
             </div>
-
-
-
 
             {/* Actual Content of our post */}
             <div className="">
