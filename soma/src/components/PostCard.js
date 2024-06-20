@@ -1,9 +1,15 @@
+import { useState } from "react";
 import Avatar from "./Avatar"
 import Card from "./Card"
 import ClickOutsideHandler from './ClickOutsideHandler';
 
 export default function PostCard() {
-    
+    const [dropdownOpen, setDropdownOpen] = useState(false)
+    // useState is a React hook that allows functional components to manage local state.
+    // It takes an initial state value as an argument and returns an array with two elements:
+        // dropdownOpen: This variable holds the current state value.
+        // setDropdownOpen: This function is used to update the state value.
+
     return (
         <Card>
 
@@ -20,15 +26,24 @@ export default function PostCard() {
 
                 {/* Getting that 3 dot menu thing */}
                 <div>
-                    <button>
+                    {/* Setting DropdownOpen to true if this button is clicked */}
+                    <button onClick={() => { setDropdownOpen(true) }}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
                         </svg>
                     </button>
 
-                    <ClickOutsideHandler onClickOutside={() => console.log('Clicked outside')}>
-                        <div>something</div>
-                    </ClickOutsideHandler>
+                    <div className="relative">
+
+                        {/* the code in () is only rendered when dropdownOpen is true */}
+                        {dropdownOpen && (
+                            <ClickOutsideHandler onClickOutside={() => setDropdownOpen(false)}>
+                                <div className="absolute right-0 shadow-md shadow-gray-300 p-3 bg-white rounded-md border border-gray-100 w-52">
+                                    something big
+                                </div>
+                            </ClickOutsideHandler>
+                        )}
+                    </div>
 
                 </div>
             </div>
