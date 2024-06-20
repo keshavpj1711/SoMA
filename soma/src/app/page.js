@@ -1,33 +1,33 @@
+"use client";
+// This is to be used bcoz since next.js 15 if we are using use Ref we have to have a client for that
+// And why is this here because ClickOutsideHandler is used by PostCard and PostCard is used by this page
+
 import NavigationCard from "@/components/NavigationCard";
 import Image from "next/image";
 import Card from "@/components/Card";
 import PostFormCard from "@/components/PostFormCard";
+import Avatar from "@/components/Avatar";
+import PostCard from "@/components/PostCard";
 
 export default function Home() {
-  return (
-    
-    <div className="flex mt-4 max-w-3xl mx-auto gap-6">
+	return (
 
-      <div className="w-1/3">
-        {/* 
-        Our First Task is to create the sidebar containing
-        - Notification
-        - Friends 
-        and other different stuff
-        */}
-        <NavigationCard />
-      </div>
+		<div className="flex mt-4 max-w-4xl mx-auto gap-6">
 
-      <div className="grow">
+			<div className="w-1/4">
+				{/* Creating Sidebar */}
+				<NavigationCard />
+			</div>
 
-        {/* This PostFormCard gets us all the component 
-        that we want, to create the post feature area */}
-        <PostFormCard />
-        
-        {/*  */}
-        <Card>first post</Card>
+			<div className="grow">
 
-      </div>
-    </div>
-  );
+				{/* PostFormCard to "create the post" feature area */}
+				<PostFormCard />
+
+				{/* Creating a single post */}
+				<PostCard />
+
+			</div>
+		</div>
+	);
 }
