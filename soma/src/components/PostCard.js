@@ -2,6 +2,7 @@ import { useState } from "react";
 import Avatar from "./Avatar"
 import Card from "./Card"
 import ClickOutsideHandler from './ClickOutsideHandler';
+import Link from "next/link";
 
 export default function PostCard() {
     const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -10,17 +11,33 @@ export default function PostCard() {
     // dropdownOpen: This variable holds the current state value.
     // setDropdownOpen: This function is used to update the state value.
 
+    const hoverElement = 'flex gap-2 py-2 my-2 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110 hover:shadow-md shadow-gray-300'
+
     return (
         <Card>
 
             {/* This is for header kind of thing for our post */}
             <div className="flex gap-3">
                 <div>
-                    <Avatar />
+                    <Link href={'/profile'}>
+                        <span className="cursor-pointer">
+                            <Avatar />
+                        </span>
+                    </Link>
                 </div>
 
                 <div className="grow">
-                    <p><a href="" className="font-semibold">Rhaenyra Targaryen</a> shared a <a href="" className="text-socialBlue">post</a></p>
+                    <p>
+                        <Link href={'/profile'}>
+                            <span href="" className="font-semibold cursor-pointer mr-1 hover:underline">
+                                Rhaenyra Targaryen
+                            </span>
+                        </Link>
+                        <span className="mr-1">shared a</span>
+                        <a href="" className="text-socialBlue">
+                            post
+                        </a>
+                    </p>
                     <p className="text-gray-500 text-sm">1 hour ago</p>
                 </div>
 
@@ -52,35 +69,35 @@ export default function PostCard() {
                         {dropdownOpen && (
                             <ClickOutsideHandler onClickOutside={() => setDropdownOpen(false)}>
                                 <div className="absolute right-0 shadow-md shadow-gray-300 p-3 bg-white rounded-md border border-gray-100 w-52">
-                                    <a href="" className="flex gap-2 py-2">
+                                    <a href="" className={hoverElement}>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
                                         </svg>
                                         Save Post
                                     </a>
 
-                                    <a href="" className="flex gap-2 py-2">
+                                    <a href="" className={hoverElement}>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
                                         </svg>
                                         Turn Notifications
                                     </a>
 
-                                    <a href="" className="flex gap-2 py-2">
+                                    <a href="" className={hoverElement}>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
                                         </svg>
                                         Hide Post
                                     </a>
 
-                                    <a href="" className="flex gap-2 py-2">
+                                    <a href="" className={hoverElement}>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                         </svg>
                                         Delete
                                     </a>
 
-                                    <a href="" className="flex gap-2 py-2">
+                                    <a href="" className={hoverElement}>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
                                         </svg>
