@@ -10,6 +10,7 @@ import PostCard from "../../components/PostCard";
 import Link from "next/link";
 import Avatar from "../../components/Avatar";
 import { usePathname } from "next/navigation";
+import FriendInfo from "../../components/FriendsInfo";
 
 export default function ProfilePages() {
     const pathName = usePathname()
@@ -105,6 +106,39 @@ export default function ProfilePages() {
             {isPosts && (
                 <div>
                     <PostCard />
+                </div>
+            )}
+
+            {isFriends && (
+                <div>
+                    <Card>
+                        <div className="m-4">
+                            <h1 className="text-2xl font-bold mb-4">
+                                Friends
+                            </h1>
+
+                            <div className="">
+                                <div className="border-b border-b-gray-100 p-4 -mx-4 ">
+                                    <FriendInfo />
+                                </div>
+                                <div className="border-b border-b-gray-100 p-4 -mx-4 ">
+                                    <FriendInfo />
+                                </div>
+                                <div className="border-b border-b-gray-100 p-4 -mx-4 ">
+                                    <FriendInfo />
+                                </div>
+                                <div className="border-b border-b-gray-100 p-4 -mx-4 ">
+                                    <FriendInfo />
+                                </div>
+                                <div className="border-b border-b-gray-100 p-4 -mx-4 ">
+                                    <FriendInfo />
+                                </div>
+                                <div className="border-b border-b-gray-100 p-4 -mx-4 ">
+                                    <FriendInfo />
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
                 </div>
             )}
         </Layout>
