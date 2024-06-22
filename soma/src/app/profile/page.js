@@ -27,7 +27,7 @@ export default function ProfilePages() {
                             <h1 className="text-xl font-bold">
                                 Rhaenyra Targaryen
                             </h1>
-                            <div>
+                            <div className="text-gray-500">
                                 Dragonstone, House Targaryen
                             </div>
                         </div>
