@@ -12,7 +12,7 @@ export default function Layout({children}) {
 				<NavigationCard />
 			</div>
 
-			<div className="grow">		
+			<div className="w-3/4">		
                 {children}
 			</div>
 		</div>

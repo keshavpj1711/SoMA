@@ -150,7 +150,7 @@ export default function PostCard() {
             {/* Textarea to add a comment */}
             <div className="flex gap-4 mt-4">
                 <div>
-                    <Avatar />
+                    <Avatar size="big" />
                 </div>
 
                 <div className="border grow rounded-full relative">
