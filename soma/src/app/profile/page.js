@@ -1,6 +1,8 @@
+import Layout from "../../components/Layout";
+
 export default function ProfilePages() {
 
     return (
-        <div>Under Progress</div>
+        <Layout></Layout>
     );
 }
