@@ -141,6 +141,28 @@ export default function ProfilePages() {
                     </Card>
                 </div>
             )}
+
+            {isPhotos && (
+                <Card>
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="rounded-md overflow-hidden w-full h-48 shadow-md">
+                            <img className="h-full object-cover w-full" src="https://w0.peakpx.com/wallpaper/842/729/HD-wallpaper-tv-show-house-of-the-dragon.jpg" alt="" />
+                        </div>
+
+                        <div className="rounded-md h-48 w-full overflow-hidden shadow-md">
+                            <img className="h-full object-cover w-full" src="https://w0.peakpx.com/wallpaper/628/947/HD-wallpaper-tv-show-house-of-the-dragon.jpg" alt="" />
+                        </div>
+
+                        <div className="rounded-md h-48 w-full overflow-hidden shadow-md">
+                            <img className="h-full object-cover w-full" src="https://w0.peakpx.com/wallpaper/720/962/HD-wallpaper-house-of-the-dragon-house-of-the-dragon-tv-shows-dragon.jpg" alt="" />
+                        </div>
+
+                        <div className="rounded-md h-48 w-full overflow-hidden shadow-md">
+                            <img className="h-full object-cover w-full" src="https://w0.peakpx.com/wallpaper/572/953/HD-wallpaper-game-of-thrones-daenerys-targaryen-house-westeros-queen-khaleesi-dragon-emilia-clarke-dragons-daenerys-targaryen-show-fantasy-tv-show-tv-series-skyphoenixx1-george-r-r-martin-essos-hbo.jpg" alt="" />
+                        </div>
+                    </div>
+                </Card>
+            )}
         </Layout>
     );
 }
