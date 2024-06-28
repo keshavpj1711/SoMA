@@ -1,10 +1,12 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from './supabaseClient';
+import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const router = useRouter()
 
     useEffect(() => {
         const getSession = async () => {
@@ -28,13 +30,18 @@ export const AuthProvider = ({ children }) => {
         if (error) console.error('Error signing in with Google:', error.message);
     };
 
-    const signOut = async () => {
+    const logOut = async () => {
         const { error } = await supabase.auth.signOut();
+        setUser(null);
+        // setting user to null once the user is signed out
         if (error) console.error('Error signing out:', error.message);
+
+        // routing to login page
+        router.push('/login');
     };
 
     return (
-        <AuthContext.Provider value={{ user, signInWithGoogle, signOut }}>
+        <AuthContext.Provider value={{ user, signInWithGoogle, logOut }}>
             {children}
         </AuthContext.Provider>
     );
