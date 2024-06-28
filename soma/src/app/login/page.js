@@ -12,7 +12,7 @@ export default function Login() {
 
     useEffect(() => {
         if (user) {
-            router.push('/');
+            router.push('/profile');
         }
     }, [user]);
 
