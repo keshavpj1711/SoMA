@@ -1,7 +1,27 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '../../supabase/AuthContext';
+import { supabase } from '../../supabase/supabaseClient';
 import Card from "../../components/Card";
 import Layout from "../../components/Layout";
 
 export default function Login() {
+    const { user } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (user) {
+            router.push('/profile');
+        }
+    }, [user]);
+
+    const handleGoogleLogin = async () => {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+        });
+        if (error) console.log('Error logging in with Google:', error.message);
+    };
+
     return (
         <Layout hideNavigation={true}>
             <div className="h-screen flex items-center">
