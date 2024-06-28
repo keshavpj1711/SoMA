@@ -3,42 +3,41 @@ import { supabase } from './supabaseClient';
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const session = supabase.auth.session();
-    setUser(session?.user ?? null);
+    useEffect(() => {
+        const getSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            setUser(session?.user ?? null);
+        };
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user ?? null);
-    });
+        getSession();
 
-    return () => {
-      authListener?.unsubscribe();
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            setUser(session?.user ?? null);
+        });
+
+        return () => {
+            subscription?.unsubscribe();
+        };
+    }, []);
+
+    const signInWithGoogle = async () => {
+        const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
+        if (error) console.error('Error signing in with Google:', error.message);
     };
-  }, []);
 
-  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
-}
+    const signOut = async () => {
+        const { error } = await supabase.auth.signOut();
+        if (error) console.error('Error signing out:', error.message);
+    };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
+    return (
+        <AuthContext.Provider value={{ user, signInWithGoogle, signOut }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
-// Purpose: To create a React context for authentication, which will manage and provide user state across your application.
-
-// What We Did:
-//     Created AuthContext: This is a context that will be used to provide authentication data to the rest of your app.
-//     AuthProvider Component:
-//         State Management: We used the useState hook to create a user state that will hold the authenticated user data.
-//         Effect Hook: We used the useEffect hook to:
-//             Get the current session and set the user state accordingly.
-//             Set up a listener for authentication state changes to update the user state when the user logs in or out.
-//         Unsubscribe: We clean up the listener when the component unmounts to avoid memory leaks.
-//     useAuth Hook: A custom hook that simplifies access to the AuthContext.
-
-// Why We Did This
-//     Modularity: Separating the Supabase client setup and authentication logic into their own files makes the code more modular and easier to manage.
-//     Reusability: The Supabase client and authentication context can be imported and used in any component that needs them.
-//     State Management: The AuthContext provides a centralized place to manage user authentication state, making it easier to protect routes and manage user sessions.
+export const useAuth = () => useContext(AuthContext);
