@@ -1,8 +1,4 @@
 import NavigationCard from "@/components/NavigationCard";
-import Image from "next/image";
-import Card from "@/components/Card";
-import PostFormCard from "@/components/PostFormCard";
-import Avatar from "@/components/Avatar";
 
 export default function Layout({ children, hideNavigation }) {
     let rightColumnClasses = ''
